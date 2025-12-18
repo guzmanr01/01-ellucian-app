@@ -1,6 +1,6 @@
 module.exports = {
     name: 'RgDevMyFirstCard',
-    publisher: 'DEV | Roberto Guzman Gonzalez',
+    publisher: 'sample',
     cards: [{
         type: 'RgDevMyFirstCardCard',
         source: './src/cards/RgDevMyFirstCardCard',
@@ -14,5 +14,28 @@ module.exports = {
     }],
     page: {
         source: './src/page/router.jsx'
+    },
+    queries: {
+        'sites-list': [
+            {
+                resourceVersions: {
+                    sites: { min: 6 }
+                },
+                query: `{
+                    sites: {sites}(
+                        sort: { code: ASC }
+                    ) {
+                        edges {
+                            node {
+                                id
+                                code
+                                title
+                                description
+                            }
+                        }
+                    }
+                }`
+            },
+        ]
     }
 };

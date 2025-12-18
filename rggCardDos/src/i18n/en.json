@@ -1,0 +1,16 @@
+{
+    "messages": {
+        "MSG-001": "Fetch FAILED",
+        "MSG-002": "Could not fetch SITES",
+        "MSG-003": "Loading...",
+        "MSG-004": "Campuses",
+        "MSG-005": "Buildings",
+        "MSG-006": "Description",
+        "MSG-007": "Hi ",
+        "MSG-008": ", you're in your new card.",
+        "MSG-009": "Campuses",
+        "MSG-010": "Buildings",
+        "MSG-011": "Description"
+        
+    }
+}

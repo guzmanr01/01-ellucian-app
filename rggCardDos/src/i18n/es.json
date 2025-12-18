@@ -1,0 +1,15 @@
+{
+    "messages": {
+        "MSG-001": "Fallo al realizar la peticion",
+        "MSG-002": "No se obtuvieron sedes",
+        "MSG-003": "Cargandooo...",
+        "MSG-004": "Sedes",
+        "MSG-005": "Edificios",
+        "MSG-006": "Descripcion",
+        "MSG-007": "Hola ",
+        "MSG-008": ", esta es tu nueva tarjeta.",
+        "MSG-009": "Sedes",
+        "MSG-010": "Acciones",
+        "MSG-011": "Ver"
+    }
+}

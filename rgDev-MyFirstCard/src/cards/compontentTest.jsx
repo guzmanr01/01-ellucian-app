@@ -25,15 +25,14 @@ const styles = () => ({
     }
 });
 
-const RgDevMyFirstCardCard = (props) => {
-    const { classes, data: { getEthosQuery } } = props;
-    const [sites, setSites] = useState();
+const XPspFirstCardCard = (props) => {
+    const { classes, data:{ getEthosQuery } } = props;
+    const [ sites, setSites ] = useState();
 
     const getSitesData = async() => {
 
         try {
             
-            // const result = await getEthosQuery( { queryId: 'sites-list'});
             const result = await getEthosQuery( { queryId: 'sites-list'});
             console.log( "result", result );
             const tmpSites = result?.data?.sites?.edges?.map( site => site.node ) || [];
@@ -47,9 +46,9 @@ const RgDevMyFirstCardCard = (props) => {
 
     useEffect(() =>{
         getSitesData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sites]);
-    
+
     const layoutProp = {
         variant: 'expansionPanels',
         breakpoint: responsiveViewport !== 'none' ? responsiveViewport : '',
@@ -92,32 +91,15 @@ const RgDevMyFirstCardCard = (props) => {
                             })}
                         </TableBody>
                     </Table>
-                :   'Cargandooooo...'
+                :   'Cargando...'
             }
         </div>
     );
-    
-
-    // return (
-    //     <div className={classes.card}>
-    //         <Typography variant="h2">
-    //             Hello RgDevMyFirstCard World, modificacionnnn
-    //         </Typography>
-    //         <Typography>
-    //             <span>
-    //                 For sample extensions, visit the Ellucian Developer
-    //             </span>
-    //             <TextLink href="https://github.com/ellucian-developer/experience-extension-sdk-samples" target="_blank">
-    //                  GitHub
-    //             </TextLink>
-    //         </Typography>
-    //     </div>
-    // );
 };
 
-RgDevMyFirstCardCard.propTypes = {
+XPspFirstCardCard.propTypes = {
     classes: PropTypes.object.isRequired,
     data: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(RgDevMyFirstCardCard);
+export default withStyles(styles)(XPspFirstCardCard);
