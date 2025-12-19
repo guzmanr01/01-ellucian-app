@@ -47,11 +47,11 @@ export function withIntl(Component) {
 
     class WithIntl extends React.Component {
         render() {
-            const { userInfo: { locale } = {} } = this.props
+            const { userInfo: { locale } = {}, ...rest } = this.props
 
             return (
                 <IntlProvider locale={locale} messages={getMessages(locale)}>
-                    <InjectedComponent {...this.props} />
+                    <InjectedComponent {...rest} />
                 </IntlProvider>
             )
         }
@@ -63,7 +63,36 @@ export function withIntl(Component) {
         })
     }
 
-    WithIntl.displayName = WithIntl(`${Component.displayName || Component.name || 'Component'}`)
+    WithIntl.displayName = `WithIntl(${Component.displayName || Component.name || 'Component'})`;
 
     return WithIntl
 }
+
+// import PropTypes from 'prop-types'
+// import React from 'react'
+// import { IntlProvider } from 'react-intl'
+// import { getMessages } from '../i18n/intlUtility'
+
+// export function withIntl(Component) {
+//     class WithIntl extends React.Component {
+//         render() {
+//             const { userInfo: { locale } = {}, ...rest } = this.props
+
+//             return (
+//                 <IntlProvider locale={locale} messages={getMessages(locale)}>
+//                     <Component {...rest} />
+//                 </IntlProvider>
+//             )
+//         }
+//     }
+
+//     WithIntl.propTypes = {
+//         userInfo: PropTypes.shape({
+//             locale: PropTypes.string
+//         })
+//     }
+
+//     WithIntl.displayName = `WithIntl(${Component.displayName || Component.name || 'Component'})`
+
+//     return WithIntl
+// }

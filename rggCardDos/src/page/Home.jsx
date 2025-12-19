@@ -74,7 +74,7 @@ const HomePage = (props) => {
             setStudentInformation( result );
         } catch (error) {
             // console.log(error);
-            console.log(`{intl.formatMessage({id: 'MSG-001'})}`, error);
+            console.log(`${intl.formatMessage({id: 'MSG-001'})}`, error);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
