@@ -1,13 +1,14 @@
 import { withStyles } from '@ellucian/react-design-system/core/styles';
-import { spacing20 } from '@ellucian/react-design-system/core/styles/tokens';
+import { spacing20} from '@ellucian/react-design-system/core/styles/tokens';
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useCardInfo, useData, usePageControl, useUserInfo } from '@ellucian/experience-extension-utils';
-import { Pagination, Table, TableHead, TableBody, TableCell, TableRow, TableFooter, Divider, Button} from '@ellucian/react-design-system/core';
+import { Pagination, Table, TableHead, TableBody, TableCell, TableRow, TableFooter, Divider, Button, CircularProgress} from '@ellucian/react-design-system/core';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { useIntl } from 'react-intl';
 import { withIntl } from '../Utils/ReactIntlProviderWrapper';
 import { fetchStudentAcademicInfo } from '../data/student-information';
+
 
 const styles = () => ({
     card: {
@@ -38,14 +39,14 @@ const HomePage = (props) => {
     const [studentInformation, setStudentInformation] = useState();
     const { authenticatedEthosFetch } = useData();
 
+    const [loadingDataStudent, setLoadingDataStudent] = useState(false);
+
     const getBuildingsData = async () => {
-        
         try {
-            
             const result = await getEthosQuery({  queryId: 'buildings-list', properties: { 'siteId': siteId } });
             const tmpBuildings = result?.data?.buildings?.edges?.map( dato => dato.node ) || [];
             
-            setBuildings(tmpBuildings);
+            setBuildings(tmpBuildings);            
             console.log(`Roberto GG | tmpBuildings`, buildings);
         } catch (error) {
             console.error('Error fetching sites data:', error);
@@ -69,9 +70,11 @@ const HomePage = (props) => {
 
     const handleGetInformation = useCallback(async() => {
         try {
+            setLoadingDataStudent(true);
             const result = await fetchStudentAcademicInfo({ authenticatedEthosFetch, cardId, studentAcademicInfoPipeline });
             // const result = await fetchStudentAcademicInfo( authenticatedEthosFetch, cardId, studentAcademicInfoPipeline);
-            setStudentInformation( result );
+            setStudentInformation( result.data );
+            setLoadingDataStudent(false);
         } catch (error) {
             // console.log(error);
             console.log(`${intl.formatMessage({id: 'MSG-001'})}`, error);
@@ -117,7 +120,18 @@ const HomePage = (props) => {
                         </TableFooter>
                     </Table>
 
-                    <Divider id={`${customId}_MiddleExample`} variant={'middle'} />
+                    
+                    
+
+                    </>
+                :   <h1>Cargando datosss...</h1>
+            }
+
+
+            {/*  */}
+
+
+            <Divider id={`${customId}_MiddleExample`} variant={'middle'} />
 
                     <Button 
                         id={`${customId}_SecondaryButton`} 
@@ -127,10 +141,70 @@ const HomePage = (props) => {
                         onClick={handleGetInformation}
                     >Informaci&oacute;n acad&eacute;mica</Button>
 
-                    </>
-                    
-                :   <h1>Cargando datosss...</h1>
+            {/* tabla ------------------------------------------------------------------------ */}
+
+            { studentInformation ? 
+                (
+            <Table stickyHeader className={classes.table}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>ID Estudiante</TableCell>
+                            <TableCell align="right">Nombre</TableCell>
+                            <TableCell align="right">Periodo</TableCell>
+                            <TableCell align="right">Plan estudio</TableCell>
+                            <TableCell align="right">Estado</TableCell>
+                            <TableCell align="right">Programa</TableCell>
+                            <TableCell align="right">DESC programa</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {studentInformation.academicInfo.map( student => {
+                            return (
+                                <TableRow key={student.id}>
+                                    <TableCell>
+                                            {studentInformation.idAlumno}
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        {studentInformation.name}
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        { student.SORLCUR ? student.SORLCUR[0].termCode : 'N/A'}
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        {student.SORLCUR ? student.SORLCUR[0].keySeqno : 'N/A'}
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        {student.SORLCUR ? student.SORLCUR[0].cactCode : 'N/A'}
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        {student.SORLCUR ? student.SORLCUR[0].program : 'N/A'}
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        {student.SORLCUR ? student.SORLCUR[0].programDesc : 'N/A'}
+                                    </TableCell>
+                                </TableRow>
+                            );
+                        })}
+                    </TableBody>
+                </Table>                
+                ) 
+                :
+                (<>
+
+                    { loadingDataStudent && 
+                        <>
+                        <h3>Obteniendo datos...</h3>
+                        <CircularProgress />
+                        </>
+                    }
+                
+                </>)
             }
+
+
+
+
+
         </div>
     );
 
