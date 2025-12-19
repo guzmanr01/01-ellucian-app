@@ -125,7 +125,7 @@ const HomePage = (props) => {
                         size={'default'}  
                         className={classes.Button} 
                         onClick={handleGetInformation}
-                    >Secondary</Button>
+                    >Informaci&oacute;n acad&eacute;mica</Button>
 
                     </>
                     

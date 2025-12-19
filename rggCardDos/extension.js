@@ -7,10 +7,10 @@ module.exports = {
         title: 'RggCardDos Card',
         displayCardType: 'RggCardDos Card',
         description: 'This is an introductory card to the Ellucian Experience SDK',
-        pageRoute: {
-            route: '/',
-            excludeClickSelectors: ['a']
-        },
+        // pageRoute: {
+        //     route: '/',
+        //     excludeClickSelectors: ['a']
+        // },
         configuration: {
             client: [
                 {
@@ -19,8 +19,30 @@ module.exports = {
                     type: 'text',
                     required: true
                 }
+            ],
+            server: [
+                {
+                    key: "ethosApiKey",
+                    label:"Ethos APi KEY",
+                    type: 'password',
+                    required: true
+                }
             ]
-        }
+        },
+        // configuration:{
+        //     client: [{
+        //         key: 'studentAcademicInfoPipeline',
+        //         label: 'Student Academic Info DC',
+        //         type: 'text',
+        //         required: true
+        //     }],
+        //     server: [{
+        //         key: 'ethosApiKey',
+        //         label: 'Ethos API Key',
+        //         type: 'password',
+        //         required: true
+        //     }]
+        // }
     }],
     page: {
         source: './src/page/router.jsx'
