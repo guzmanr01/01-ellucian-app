@@ -17,7 +17,7 @@ module.exports = {
                     key: 'studentAcademicInfoPipeline',
                     label: 'Student Academic Info DC',
                     type: 'text',
-                    required: true
+                    required: false
                 }
             ],
             server: [
@@ -25,7 +25,7 @@ module.exports = {
                     key: "ethosApiKey",
                     label:"Ethos APi KEY",
                     type: 'password',
-                    required: true
+                    required: false
                 }
             ]
         },

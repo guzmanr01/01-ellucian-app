@@ -13,7 +13,7 @@ const RouterPage = (props) => {
     return (
         <Router basename={props.pageInfo.basePath}>
             <Switch>
-                <Route path='/'>
+                <Route path='/:id'>
                     <Home {...props} />
                 </Route>
             </Switch>

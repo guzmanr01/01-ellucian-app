@@ -7,12 +7,52 @@ module.exports = {
         title: 'XRggCardTres Card',
         displayCardType: 'XRggCardTres Card',
         description: 'Tarjeta | Capacitacion Experience | 06 01 2026',
-        pageRoute: {
-            route: '/',
-            excludeClickSelectors: ['a']
+        // pageRoute: {
+        //     route: '/',
+        //     excludeClickSelectors: ['a']
+        // }
+        configuration: {
+            client: [
+                {
+                    key: "getAcademicInfoPipeline",
+                    label: "Pipeline Academic Info",
+                    type: "text",
+                    required: false
+                },
+                {
+                    key: "ethosApiKey",
+                    label:"Ethos APi KEY",
+                    type: 'password',
+                    required: false
+                }
+            ],
+            // server: [
+                
+            // ]
         }
     }],
     page: {
         source: './src/page/router.jsx'
+    },
+    queries: {
+        'person-data': [
+            {
+                query: `query getPersonData($personId: ID) {
+                        persons: persons12(
+                                filter: { id: { EQ: $personId } } 
+                                sort: { id: DESC }
+                            ) {
+                            edges {
+                                node {
+                                    id
+                                    names {
+                                        fullName
+                                    }
+                                }
+                            }
+                        }
+                    }`
+            }
+        ]
     }
 };
