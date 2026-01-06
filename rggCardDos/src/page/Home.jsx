@@ -168,19 +168,19 @@ const HomePage = (props) => {
                                         {studentInformation.name}
                                     </TableCell>
                                     <TableCell align="right">
-                                        { student.SORLCUR ? student.SORLCUR[0].termCode : 'N/A'}
+                                        { student.termCode }
                                     </TableCell>
                                     <TableCell align="right">
-                                        {student.SORLCUR ? student.SORLCUR[0].keySeqno : 'N/A'}
+                                        { student.keySeqno }
                                     </TableCell>
                                     <TableCell align="right">
-                                        {student.SORLCUR ? student.SORLCUR[0].cactCode : 'N/A'}
+                                        { student.cactCode }
                                     </TableCell>
                                     <TableCell align="right">
-                                        {student.SORLCUR ? student.SORLCUR[0].program : 'N/A'}
+                                        { student.program }
                                     </TableCell>
                                     <TableCell align="right">
-                                        {student.SORLCUR ? student.SORLCUR[0].programDesc : 'N/A'}
+                                        { student.programDesc }
                                     </TableCell>
                                 </TableRow>
                             );
