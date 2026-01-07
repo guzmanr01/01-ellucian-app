@@ -11,24 +11,41 @@ module.exports = {
         //     route: '/',
         //     excludeClickSelectors: ['a']
         // }
+        // configuration: {
+        //     client: [
+        //         {
+        //             key: "getAcademicInfoPipeline",
+        //             label: "Pipeline Academic Info",
+        //             type: "text",
+        //             required: false
+        //         },
+        //         {
+        //             key: "ethosApiKey",
+        //             label:"Ethos APi KEY",
+        //             type: 'password',
+        //             required: false
+        //         }
+        //     ],
+
+        // }
+
         configuration: {
             client: [
                 {
-                    key: "getAcademicInfoPipeline",
-                    label: "Pipeline Academic Info",
-                    type: "text",
-                    required: false
-                },
-                {
-                    key: "ethosApiKey",
-                    label:"Ethos APi KEY",
-                    type: 'password',
-                    required: false
+                    key: 'getAcademicInfoPipeline',
+                    label:'Pipeline Academic Info',
+                    type: 'text',
+                    required:true
                 }
             ],
-            // server: [
-                
-            // ]
+            server: [
+                {
+                    key: 'ethosApiKey',
+                    label:'Ethos Api Key',
+                    type: 'password',
+                    required:true
+                }
+            ]
         }
     }],
     page: {
